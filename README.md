@@ -18,11 +18,17 @@ npm run dev
 npm run build
 ```
 
-## 上传方式
+## 推送
+
+```bash
+.\gitpush.ps1 "提交信息"
+```
+
+或手动：
 
 ```bash
 git add -A
-git commit -m "message"
+git commit -m "提交信息"
 git push
 ```
 
@@ -30,6 +36,7 @@ git push
 
 ```
 origin  git@github.com:141w/ww.git (push)
+分支: main
 ```
 
 ## 项目位置
