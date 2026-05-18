@@ -1,39 +1,19 @@
 # TODO
 
-Features intentionally deferred to keep the initial build focused and high-quality.
+## 待实现功能
 
-## Future Enhancements
-
-### Content
-- [ ] Add real project links and demo URLs
-- [ ] Replace placeholder email with real contact
-- [ ] Add blog/notes section
-- [ ] Add resume/CV download link
-- [ ] Add detailed project detail pages (/:projectId)
-
-### Features
-- [ ] Terminal / CLI widget on homepage
-- [ ] Theme toggle (light/dim/dark)
-- [ ] i18n support
-- [ ] Contact form (serverless)
-- [ ] Analytics integration
-- [ ] Page transition animations (React Router)
-
-### Performance
-- [ ] Lazy load sections with `React.lazy`
-- [ ] Image optimization pipeline
-- [ ] Preload critical fonts
-- [ ] Add `loading="lazy"` to images
-
-### Accessibility
-- [ ] Full keyboard navigation audit
-- [ ] Screen reader labels on icon-only elements
-- [ ] Focus trap on mobile menu
-- [ ] Reduced motion media query support
-
-### Polish
-- [ ] Scroll-triggered parallax effects
-- [ ] Smooth section transitions
-- [ ] Sitemap + SEO meta tags
-- [ ] Open Graph preview cards
-- [ ] 404 page
+- [ ] 添加真实项目链接与演示地址
+- [ ] 替换占位邮箱为真实联系方式
+- [ ] 添加简历下载链接
+- [ ] 添加详细项目页面 (/:projectId)
+- [ ] 终端 / CLI 小部件
+- [ ] 亮色主题切换
+- [ ] 联系表单 (serverless)
+- [ ] 页面转场动画
+- [ ] 延迟加载优化 (React.lazy)
+- [ ] 无障碍键盘导航
+- [ ] 屏幕阅读器标签
+- [ ] Reduced motion 媒体查询支持
+- [ ] 滚动视差效果
+- [ ] SEO meta 标签优化
+- [ ] 404 页面

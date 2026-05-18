@@ -1,5 +1,23 @@
-import { motion } from 'framer-motion'
-import { tagCategories } from '../data/tags'
+import { motion } from 'motion/react'
+
+const categories = [
+  {
+    label: 'Languages',
+    items: ['Python', 'TypeScript', 'Rust', 'Go', 'C++'],
+  },
+  {
+    label: 'AI / ML',
+    items: ['PyTorch', 'XGBoost', 'FAISS', 'LangChain', 'OpenAI'],
+  },
+  {
+    label: 'Infra',
+    items: ['FastAPI', 'Cloudflare', 'Docker', 'Redis', 'PostgreSQL'],
+  },
+  {
+    label: 'Frontend',
+    items: ['React', 'Vue', 'Electron', 'TailwindCSS', 'Framer Motion'],
+  },
+]
 
 export default function TechStack() {
   return (
@@ -12,46 +30,54 @@ export default function TechStack() {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <span className="text-xs font-mono text-accent-blue tracking-widest uppercase">
+          <span className="text-xs font-mono tracking-widest uppercase" style={{ color: 'var(--accent)' }}>
             /stack
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mt-3">
-            Toolchain
+          <h2 className="text-3xl sm:text-4xl font-bold mt-3" style={{ color: 'var(--text-h)' }}>
+            技术栈
           </h2>
-          <p className="text-dark-300 mt-2 max-w-lg">
-            Technologies I work with across the full stack.
-          </p>
         </motion.div>
 
         <div className="space-y-10">
-          {tagCategories.map((category, catIndex) => (
+          {categories.map((cat, ci) => (
             <motion.div
-              key={category.label}
+              key={cat.label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.4, delay: catIndex * 0.1 }}
+              transition={{ duration: 0.4, delay: ci * 0.1 }}
             >
               <div className="flex items-center gap-4 mb-4">
-                <span className="text-xs font-mono text-dark-500 uppercase tracking-widest shrink-0">
-                  {category.label}
+                <span className="text-xs font-mono uppercase tracking-widest shrink-0" style={{ color: 'var(--text)' }}>
+                  {cat.label}
                 </span>
-                <div className="h-px flex-1 bg-gradient-to-r from-white/[0.06] to-transparent" />
+                <div className="h-px flex-1" style={{
+                  background: 'linear-gradient(to right, var(--border), transparent)'
+                }} />
               </div>
               <div className="flex flex-wrap gap-2.5">
-                {category.items.map((item, itemIndex) => (
-                  <motion.span
+                {cat.items.map((item) => (
+                  <span
                     key={item}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.25, delay: itemIndex * 0.03 }}
-                    className="group relative px-4 py-2 text-sm rounded-xl border border-white/[0.06] bg-white/[0.02] text-dark-300 hover:text-white hover:border-accent-blue/20 hover:bg-accent-blue/[0.03] transition-all duration-200 cursor-default"
+                    className="px-4 py-2 text-sm rounded-xl border transition-all duration-200"
+                    style={{
+                      borderColor: 'var(--border)',
+                      color: 'var(--text)',
+                      background: 'rgba(255,255,255,0.02)',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = 'var(--accent-border)'
+                      e.currentTarget.style.color = 'var(--text-h)'
+                      e.currentTarget.style.background = 'var(--accent-bg)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = 'var(--border)'
+                      e.currentTarget.style.color = 'var(--text)'
+                      e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
+                    }}
                   >
                     {item}
-                    <span className="absolute inset-0 rounded-xl bg-accent-blue/0 group-hover:bg-accent-blue/[0.02] transition-colors duration-200" />
-                  </motion.span>
+                  </span>
                 ))}
               </div>
             </motion.div>

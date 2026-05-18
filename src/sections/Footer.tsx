@@ -1,29 +1,31 @@
 import { Mail } from 'lucide-react'
-import GithubIcon from '../components/GithubIcon'
+import { VscGithubInverted } from 'react-icons/vsc'
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/[0.06] py-12">
+    <footer style={{ borderTop: '1px solid var(--border)' }} className="py-12">
       <div className="section-container">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <a
               href="#"
-              className="flex items-center gap-2 text-xs text-dark-400 hover:text-white transition-colors"
+              className="flex items-center gap-2 text-xs transition-colors"
+              style={{ color: 'var(--text)' }}
             >
-              <GithubIcon size={14} />
+              <VscGithubInverted size={14} />
               GitHub
             </a>
             <a
               href="mailto:hello@example.com"
-              className="flex items-center gap-2 text-xs text-dark-400 hover:text-white transition-colors"
+              className="flex items-center gap-2 text-xs transition-colors"
+              style={{ color: 'var(--text)' }}
             >
               <Mail size={14} />
-              Email
+              邮箱
             </a>
           </div>
 
-          <p className="text-xs text-dark-500 font-mono">
+          <p className="text-xs font-mono" style={{ color: 'var(--text)' }}>
             Built with React + Vite
           </p>
         </div>

@@ -1,7 +1,4 @@
-import Navigation from '../components/Navigation'
-import StarField from '../components/StarField'
-import AuroraGlow from '../components/AuroraGlow'
-import CustomCursor from '../components/CustomCursor'
+import SplashCursor from '../components/SplashCursor'
 
 interface MainLayoutProps {
   children: React.ReactNode
@@ -10,12 +7,13 @@ interface MainLayoutProps {
 export default function MainLayout({ children }: MainLayoutProps) {
   return (
     <>
-      <CustomCursor />
-      <StarField />
-      <AuroraGlow />
-      <div className="noise fixed inset-0 z-[1]" />
-      <Navigation />
-      <main className="relative z-10">{children}</main>
+      <SplashCursor
+        RAINBOW_MODE={false}
+        COLOR="#A855F7"
+      />
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        {children}
+      </div>
     </>
   )
 }

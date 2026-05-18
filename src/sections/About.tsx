@@ -1,26 +1,11 @@
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 const domains = [
-  {
-    label: 'AI Agents',
-    description: 'Autonomous reasoning, tool-use, and multi-agent orchestration systems.',
-  },
-  {
-    label: 'AI Infrastructure',
-    description: 'RAG pipelines, vector stores, embedding services, and LLM serving.',
-  },
-  {
-    label: 'Browser Runtime',
-    description: 'Headless browsers, web automation, DOM intelligence, and agentic browsing.',
-  },
-  {
-    label: 'Security AI',
-    description: 'ML-driven threat detection, anomaly scoring, and intrusion prevention.',
-  },
-  {
-    label: 'Full Stack Engineering',
-    description: 'Systems design from GPU kernels to React components.',
-  },
+  { label: 'AI Agents', desc: '自主推理、工具使用与多 Agent 编排系统' },
+  { label: 'AI 基础设施', desc: 'RAG 管道、向量数据库、Embedding 服务与 LLM 部署' },
+  { label: '浏览器运行时', desc: '无头浏览器、Web 自动化、DOM 智能与 Agent 浏览' },
+  { label: '安全 AI', desc: '基于机器学习的威胁检测、异常评分与入侵防御' },
+  { label: '全栈工程', desc: '从 GPU kernel 到 React 组件的系统设计' },
 ]
 
 export default function About() {
@@ -34,11 +19,11 @@ export default function About() {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <span className="text-xs font-mono text-accent-blue tracking-widest uppercase">
+          <span className="text-xs font-mono tracking-widest uppercase" style={{ color: 'var(--accent)' }}>
             /about
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mt-3">
-            Systems Engineer
+          <h2 className="text-3xl sm:text-4xl font-bold mt-3" style={{ color: 'var(--text-h)' }}>
+            系统工程师
           </h2>
         </motion.div>
 
@@ -49,38 +34,35 @@ export default function About() {
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.5 }}
           >
-            <p className="text-base text-dark-300 leading-relaxed">
-              I build AI-native systems — from browser runtimes that give
-              agents eyes and hands, to intrusion detection engines that hunt
-              zero-days, to RAG infrastructure that makes LLMs actually useful.
+            <p className="text-base leading-relaxed" style={{ color: 'var(--text)' }}>
+              我构建 AI 原生系统——从赋予 Agent 视觉和操作能力的浏览器运行时，到狩猎零日漏洞的入侵检测引擎，再到让 LLM 真正有用的 RAG 基础设施。
             </p>
-            <p className="text-base text-dark-300 leading-relaxed mt-4">
-              My work lives at the intersection of systems engineering and
-              applied AI. I care about latency, reliability, and shipping
-              products that feel like they think.
+            <p className="text-base leading-relaxed mt-4" style={{ color: 'var(--text)' }}>
+              我的工作位于系统工程与 AI 应用的交叉点。我在乎延迟、可靠性，以及交付有思考能力的产品。
             </p>
           </motion.div>
 
           <div className="space-y-5">
-            {domains.map((domain, index) => (
+            {domains.map((d, i) => (
               <motion.div
-                key={domain.label}
+                key={d.label}
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
-                className="flex items-start gap-4 group"
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="flex items-start gap-4"
               >
-                <div className="flex items-center justify-center w-8 h-8 rounded-lg border border-white/[0.06] bg-white/[0.02] shrink-0 mt-0.5 group-hover:border-accent-blue/20 group-hover:bg-accent-blue/[0.03] transition-colors duration-200">
-                  <span className="text-xs font-mono text-dark-500 group-hover:text-accent-blue transition-colors duration-200">
-                    {String(index + 1).padStart(2, '0')}
+                <div
+                  className="flex items-center justify-center w-8 h-8 rounded-lg border shrink-0 mt-0.5"
+                  style={{ borderColor: 'var(--border)', background: 'rgba(255,255,255,0.02)' }}
+                >
+                  <span className="text-xs font-mono" style={{ color: 'var(--text)' }}>
+                    {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-white group-hover:text-accent-blue transition-colors duration-200">
-                    {domain.label}
-                  </h3>
-                  <p className="text-xs text-dark-400 mt-1">{domain.description}</p>
+                  <h3 className="text-sm font-medium" style={{ color: 'var(--text-h)' }}>{d.label}</h3>
+                  <p className="text-xs mt-1" style={{ color: 'var(--text)' }}>{d.desc}</p>
                 </div>
               </motion.div>
             ))}

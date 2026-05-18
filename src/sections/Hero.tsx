@@ -1,11 +1,11 @@
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
+import TextPressure from '../components/TextPressure'
 import { ArrowDown } from 'lucide-react'
-import GithubIcon from '../components/GithubIcon'
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="section-container text-center z-10 pt-20">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div className="section-container text-center z-10 pt-20 w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -13,29 +13,40 @@ export default function Hero() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/[0.06] bg-white/[0.02] mb-8">
             <span className="w-2 h-2 rounded-full bg-emerald-400/80 animate-pulse" />
-            <span className="text-xs text-dark-300 font-mono">Building the future of intelligent systems</span>
+            <span className="text-xs font-mono" style={{ color: 'var(--text)' }}>全栈 · AI 系统构建者</span>
           </div>
         </motion.div>
 
-        <motion.h1
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-6"
+          style={{ width: '100%', height: '25vh', margin: '0 auto', maxWidth: 900 }}
         >
-          <span className="text-gradient">AI-Native</span>
-          <br />
-          <span className="text-white">Systems Builder</span>
-        </motion.h1>
+          <TextPressure
+            text="Hi, I'm"
+            flex={true}
+            alpha={false}
+            stroke={false}
+            width={true}
+            weight={true}
+            italic={true}
+            textColor="#ffffff"
+            strokeColor="#ff0000"
+            minFontSize={48}
+          />
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-          className="text-base sm:text-lg text-dark-300 max-w-2xl mx-auto leading-relaxed mb-10"
+          className="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-10"
+          style={{ color: 'var(--text)' }}
         >
-          Building intelligent browsers, AI agents, security systems, and
-          retrieval infrastructure.
+          构建 AI 浏览器、智能代理、安全检测与检索基础设施。
+          <br />
+          关注延迟、可靠性与交付有思考能力的产品。
         </motion.p>
 
         <motion.div
@@ -46,17 +57,24 @@ export default function Hero() {
         >
           <a
             href="#projects"
-            className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-dark-950 text-sm font-medium hover:bg-white/90 transition-all duration-200"
+            className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200"
+            style={{
+              background: 'var(--accent)',
+              color: '#000',
+            }}
           >
-            View Projects
+            查看项目
             <ArrowDown size={14} className="group-hover:translate-y-0.5 transition-transform" />
           </a>
           <a
-            href="#"
-            className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/[0.12] text-sm font-medium text-dark-200 hover:text-white hover:border-white/[0.25] transition-all duration-200"
+            href="#about"
+            className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-medium transition-all duration-200"
+            style={{
+              borderColor: 'var(--border)',
+              color: 'var(--text)',
+            }}
           >
-            <GithubIcon size={16} />
-            GitHub
+            关于我
           </a>
         </motion.div>
       </div>
