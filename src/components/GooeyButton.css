@@ -1,78 +1,42 @@
-.gooey-nav-container {
+.gooey-btn-container {
   position: relative;
   --color-1: #ffffff;
   --color-2: #ffffff;
   --color-3: #ffffff;
-  --color-4: #ffffff;
+  display: inline-block;
 }
 
-.gooey-nav-container nav {
-  display: flex;
-  position: relative;
-  transform: translate3d(0, 0, 0.01px);
-}
-
-.gooey-nav-container nav ul {
-  display: flex;
-  gap: 2em;
-  list-style: none;
-  padding: 0.5em 1em;
-  margin: 0;
+.gooey-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
   position: relative;
   z-index: 3;
-  color: white;
-}
-
-.gooey-nav-container nav ul li {
-  border-radius: 100vw;
-  position: relative;
-  cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.gooey-nav-container nav ul li a {
-  display: inline-block;
-  padding: 0.5em 1.2em;
-  text-decoration: none;
-  color: inherit;
-  font-size: 0.95rem;
-  font-weight: 500;
+  transition: all 0.3s ease;
+  font-family: inherit;
   letter-spacing: 0.02em;
 }
 
-.gooey-nav-container nav ul li:focus-within:has(:focus-visible) {
-  outline: 2px solid rgba(255, 255, 255, 0.5);
-  outline-offset: 2px;
-  border-radius: 100vw;
+.gooey-btn:hover {
+  color: var(--text-h);
+  border-color: var(--accent-border);
 }
 
-.gooey-nav-container nav ul li::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 100vw;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  opacity: 0;
-  transform: scale(0.8);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: -1;
-}
-
-.gooey-nav-container nav ul li.active {
+.gooey-btn.active {
   color: white;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
-.gooey-nav-container nav ul li.active::after {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.gooey-nav-container .effect {
+.gooey-btn-container .effect {
   position: absolute;
   left: 0;
   top: 0;
@@ -85,31 +49,31 @@
   z-index: 1;
 }
 
-.gooey-nav-container .effect.text {
-  color: white;
+.gooey-btn-container .effect.text {
+  color: var(--text);
   transition: color 0.3s ease;
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   font-weight: 500;
 }
 
-.gooey-nav-container .effect.text.active {
+.gooey-btn-container .effect.text.active {
   color: white;
 }
 
-.gooey-nav-container .effect.filter {
+.gooey-btn-container .effect.filter {
   filter: blur(4px) contrast(20);
 }
 
-.gooey-nav-container .effect.filter::before {
+.gooey-btn-container .effect.filter::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -2;
   background: rgba(255, 255, 255, 0.3);
-  border-radius: 100vw;
+  border-radius: 12px;
 }
 
-.gooey-nav-container .effect.filter::after {
+.gooey-btn-container .effect.filter::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -117,10 +81,10 @@
   transform: scale(0);
   opacity: 0;
   z-index: -1;
-  border-radius: 100vw;
+  border-radius: 12px;
 }
 
-.gooey-nav-container .effect.active::after {
+.gooey-btn-container .effect.active::after {
   animation: pill 0.3s ease both;
 }
 
@@ -135,8 +99,8 @@
 .point {
   display: block;
   opacity: 0;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 100%;
   transform-origin: center;
 }
@@ -144,8 +108,8 @@
 .particle {
   --time: 5s;
   position: absolute;
-  top: calc(50% - 6px);
-  left: calc(50% - 6px);
+  top: calc(50% - 5px);
+  left: calc(50% - 5px);
   animation: particle calc(var(--time)) ease 1 -350ms;
 }
 

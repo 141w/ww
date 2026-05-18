@@ -1,5 +1,6 @@
 import { motion } from 'motion/react'
 import TextPressure from '../components/TextPressure'
+import GooeyButton from '../components/GooeyButton'
 import { ArrowDown } from 'lucide-react'
 
 export default function Hero() {
@@ -55,27 +56,27 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.45, ease: 'easeOut' }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <a
+          <GooeyButton
             href="#projects"
-            className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200"
-            style={{
-              background: 'var(--accent)',
-              color: '#000',
-            }}
+            particleCount={8}
+            particleDistances={[50, 6]}
+            particleR={60}
+            animationTime={400}
+            timeVariance={150}
           >
             查看项目
-            <ArrowDown size={14} className="group-hover:translate-y-0.5 transition-transform" />
-          </a>
-          <a
+            <ArrowDown size={14} />
+          </GooeyButton>
+          <GooeyButton
             href="#about"
-            className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-medium transition-all duration-200"
-            style={{
-              borderColor: 'var(--border)',
-              color: 'var(--text)',
-            }}
+            particleCount={8}
+            particleDistances={[50, 6]}
+            particleR={60}
+            animationTime={400}
+            timeVariance={150}
           >
             关于我
-          </a>
+          </GooeyButton>
         </motion.div>
       </div>
 

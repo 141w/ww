@@ -143,7 +143,7 @@ const ScrollStack = ({
 
       if (hasChanged) {
         const transform = `translate3d(0, ${newTransform.translateY}px, 0) scale(${newTransform.scale}) rotate(${newTransform.rotation}deg)`;
-        const filter = newTransform.blur > 0 ? `blur(${newTransform.blur}px)` : '';
+        const filter = newTransform.blur > 0 ? `blur(${newTransform.blur}px)` : 'none';
 
         card.style.transform = transform;
         card.style.filter = filter;
@@ -259,13 +259,20 @@ const ScrollStack = ({
       if (i < cards.length - 1) {
         card.style.marginBottom = `${itemDistance}px`;
       }
-      card.style.willChange = 'transform, filter';
       card.style.transformOrigin = 'top center';
       card.style.backfaceVisibility = 'hidden';
-      card.style.transform = 'translateZ(0)';
-      card.style.webkitTransform = 'translateZ(0)';
+      card.style.transform = 'translate3d(0, 0, 0)';
+      card.style.webkitTransform = 'translate3d(0, 0, 0)';
       card.style.perspective = '1000px';
       card.style.webkitPerspective = '1000px';
+      card.style.webkitFontSmoothing = 'antialiased';
+      card.style.mozOsxFontSmoothing = 'grayscale';
+
+      const innerElements = card.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, a, li');
+      innerElements.forEach(el => {
+        el.style.webkitFontSmoothing = 'antialiased';
+        el.style.mozOsxFontSmoothing = 'grayscale';
+      });
     });
 
     setupLenis();

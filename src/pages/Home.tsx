@@ -68,10 +68,8 @@ export default function Home() {
             <About />
           </div>
         </ScrollStackItem>
-        <ScrollStackItem>
-          <Footer />
-        </ScrollStackItem>
       </ScrollStack>
+      <Footer />
     </>
   )
 }
