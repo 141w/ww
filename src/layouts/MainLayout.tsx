@@ -7,18 +7,9 @@ interface MainLayoutProps {
 export default function MainLayout({ children }: MainLayoutProps) {
   return (
     <div style={{ position: 'relative', minHeight: '100vh' }}>
-      <div
-        style={{
-          position: 'fixed',
-          inset: 0,
-          zIndex: 0,
-          width: '100vw',
-          height: '100vh',
-          background: '#000',
-        }}
-      >
+      <div style={{ position: 'fixed', inset: 0, zIndex: 0 }}>
         <Dither
-          waveColor={[0.4, 0.2, 0.6]}
+          waveColor={[0.5, 0.5, 0.5]}
           disableAnimation={false}
           enableMouseInteraction={true}
           mouseRadius={0.3}
