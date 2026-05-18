@@ -4,6 +4,7 @@ import TechStack from '../sections/TechStack'
 import About from '../sections/About'
 import Footer from '../sections/Footer'
 import Dock from '../components/Dock'
+import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
 import {
   VscHome,
   VscArchive,
@@ -40,10 +41,35 @@ export default function Home() {
       <div id="hero">
         <Hero />
       </div>
-      <Projects />
-      <TechStack />
-      <About />
-      <Footer />
+      <ScrollStack
+        useWindowScroll={true}
+        itemDistance={60}
+        itemScale={0.02}
+        itemStackDistance={20}
+        stackPosition="15%"
+        scaleEndPosition="5%"
+        baseScale={0.9}
+        blurAmount={2}
+      >
+        <ScrollStackItem>
+          <div id="projects">
+            <Projects />
+          </div>
+        </ScrollStackItem>
+        <ScrollStackItem>
+          <div id="stack">
+            <TechStack />
+          </div>
+        </ScrollStackItem>
+        <ScrollStackItem>
+          <div id="about">
+            <About />
+          </div>
+        </ScrollStackItem>
+        <ScrollStackItem>
+          <Footer />
+        </ScrollStackItem>
+      </ScrollStack>
       <div
         style={{
           position: 'fixed',
