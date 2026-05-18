@@ -25,21 +25,18 @@ export default function Home() {
           zIndex: 100,
           display: 'flex',
           justifyContent: 'center',
-          padding: '1rem 0',
-          background: 'rgba(0, 0, 0, 0.3)',
-          backdropFilter: 'blur(10px)',
-          WebkitBackdropFilter: 'blur(10px)',
+          padding: '1.2rem 0',
         }}
       >
         <GooeyNav
           items={navItems}
-          particleCount={15}
-          particleDistances={[90, 10]}
-          particleR={100}
+          particleCount={12}
+          particleDistances={[60, 8]}
+          particleR={80}
           initialActiveIndex={0}
-          animationTime={600}
-          timeVariance={300}
-          colors={[1, 2, 3, 1, 2, 3, 1, 4]}
+          animationTime={500}
+          timeVariance={200}
+          colors={[1, 2, 3, 4]}
         />
       </header>
 

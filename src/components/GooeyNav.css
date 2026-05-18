@@ -1,34 +1,9 @@
-:root {
-  --linear-ease: linear(
-    0,
-    0.068,
-    0.19 2.7%,
-    0.804 8.1%,
-    1.037,
-    1.199 13.2%,
-    1.245,
-    1.27 15.8%,
-    1.274,
-    1.272 17.4%,
-    1.249 19.1%,
-    0.996 28%,
-    0.949,
-    0.928 33.3%,
-    0.926,
-    0.933 36.8%,
-    1.001 45.6%,
-    1.013,
-    1.019 50.8%,
-    1.018 54.4%,
-    1 63.1%,
-    0.995 68%,
-    1.001 85%,
-    1
-  );
-}
-
 .gooey-nav-container {
   position: relative;
+  --color-1: #c084fc;
+  --color-2: #818cf8;
+  --color-3: #38bdf8;
+  --color-4: #f472b6;
 }
 
 .gooey-nav-container nav {
@@ -41,12 +16,11 @@
   display: flex;
   gap: 2em;
   list-style: none;
-  padding: 0 1em;
+  padding: 0.5em 1em;
   margin: 0;
   position: relative;
   z-index: 3;
   color: white;
-  text-shadow: 0 1px 1px hsl(205deg 30% 10% / 0.2);
 }
 
 .gooey-nav-container nav ul li {
@@ -55,38 +29,42 @@
   cursor: pointer;
   transition:
     background-color 0.3s ease,
-    color 0.3s ease,
-    box-shadow 0.3s ease;
-  box-shadow: 0 0 0.5px 1.5px transparent;
-  color: white;
+    color 0.3s ease;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .gooey-nav-container nav ul li a {
   display: inline-block;
-  padding: 0.6em 1em;
+  padding: 0.5em 1.2em;
   text-decoration: none;
   color: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .gooey-nav-container nav ul li:focus-within:has(:focus-visible) {
-  box-shadow: 0 0 0.5px 1.5px white;
+  outline: 2px solid rgba(192, 132, 252, 0.8);
+  outline-offset: 2px;
+  border-radius: 100vw;
 }
 
 .gooey-nav-container nav ul li::after {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 10px;
-  background: white;
+  border-radius: 100vw;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   opacity: 0;
-  transform: scale(0);
-  transition: all 0.3s ease;
+  transform: scale(0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: -1;
 }
 
 .gooey-nav-container nav ul li.active {
-  color: black;
-  text-shadow: none;
+  color: white;
 }
 
 .gooey-nav-container nav ul li.active::after {
@@ -110,30 +88,32 @@
 .gooey-nav-container .effect.text {
   color: white;
   transition: color 0.3s ease;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
 .gooey-nav-container .effect.text.active {
-  color: black;
+  color: white;
 }
 
 .gooey-nav-container .effect.filter {
-  filter: blur(7px) contrast(100) blur(0);
-  mix-blend-mode: lighten;
+  filter: blur(4px) contrast(20);
 }
 
 .gooey-nav-container .effect.filter::before {
   content: '';
   position: absolute;
-  inset: -75px;
+  inset: 0;
   z-index: -2;
-  background: black;
+  background: rgba(192, 132, 252, 0.3);
+  border-radius: 100vw;
 }
 
 .gooey-nav-container .effect.filter::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: white;
+  background: rgba(192, 132, 252, 0.8);
   transform: scale(0);
   opacity: 0;
   z-index: -1;
@@ -155,8 +135,8 @@
 .point {
   display: block;
   opacity: 0;
-  width: 20px;
-  height: 20px;
+  width: 12px;
+  height: 12px;
   border-radius: 100%;
   transform-origin: center;
 }
@@ -164,8 +144,8 @@
 .particle {
   --time: 5s;
   position: absolute;
-  top: calc(50% - 8px);
-  left: calc(50% - 8px);
+  top: calc(50% - 6px);
+  left: calc(50% - 6px);
   animation: particle calc(var(--time)) ease 1 -350ms;
 }
 
