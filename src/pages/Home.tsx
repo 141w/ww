@@ -3,41 +3,46 @@ import Projects from '../sections/Projects'
 import TechStack from '../sections/TechStack'
 import About from '../sections/About'
 import Footer from '../sections/Footer'
-import Dock from '../components/Dock'
 import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
-import {
-  VscHome,
-  VscArchive,
-  VscAccount,
-  VscSettingsGear,
-} from 'react-icons/vsc'
+import GooeyNav from '../components/GooeyNav'
 
 export default function Home() {
-  const dockItems = [
-    {
-      icon: <VscHome size={18} />,
-      label: '首页',
-      onClick: () => document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' }),
-    },
-    {
-      icon: <VscArchive size={18} />,
-      label: '项目',
-      onClick: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }),
-    },
-    {
-      icon: <VscSettingsGear size={18} />,
-      label: '技术栈',
-      onClick: () => document.getElementById('stack')?.scrollIntoView({ behavior: 'smooth' }),
-    },
-    {
-      icon: <VscAccount size={18} />,
-      label: '关于',
-      onClick: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }),
-    },
+  const navItems = [
+    { label: '首页', href: '#hero' },
+    { label: '项目', href: '#projects' },
+    { label: '技术栈', href: '#stack' },
+    { label: '关于', href: '#about' },
   ]
 
   return (
     <>
+      <header
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 100,
+          display: 'flex',
+          justifyContent: 'center',
+          padding: '1rem 0',
+          background: 'rgba(0, 0, 0, 0.3)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
+        }}
+      >
+        <GooeyNav
+          items={navItems}
+          particleCount={15}
+          particleDistances={[90, 10]}
+          particleR={100}
+          initialActiveIndex={0}
+          animationTime={600}
+          timeVariance={300}
+          colors={[1, 2, 3, 1, 2, 3, 1, 4]}
+        />
+      </header>
+
       <div id="hero">
         <Hero />
       </div>
@@ -70,22 +75,6 @@ export default function Home() {
           <Footer />
         </ScrollStackItem>
       </ScrollStack>
-      <div
-        style={{
-          position: 'fixed',
-          bottom: '0.5rem',
-          left: 0,
-          right: 0,
-          zIndex: 10,
-          display: 'flex',
-          justifyContent: 'center',
-          pointerEvents: 'none',
-        }}
-      >
-        <div style={{ pointerEvents: 'auto' }}>
-          <Dock items={dockItems} panelHeight={68} baseItemSize={50} magnification={70} />
-        </div>
-      </div>
     </>
   )
 }

@@ -24,7 +24,7 @@ export default function Hero() {
           style={{ width: '100%', height: '25vh', margin: '0 auto', maxWidth: 900 }}
         >
           <TextPressure
-            text="Hi, I'm"
+            text="HELLO"
             flex={true}
             alpha={false}
             stroke={false}
