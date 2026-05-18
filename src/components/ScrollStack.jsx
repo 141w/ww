@@ -3,7 +3,10 @@ import Lenis from 'lenis';
 import './ScrollStack.css';
 
 export const ScrollStackItem = ({ children, itemClassName = '' }) => (
-  <div className={`scroll-stack-card ${itemClassName}`.trim()}>{children}</div>
+  <div className={`scroll-stack-card ${itemClassName}`.trim()}>
+    <div className="scroll-stack-card-overlay"></div>
+    <div className="scroll-stack-card-content">{children}</div>
+  </div>
 );
 
 const ScrollStack = ({
@@ -86,6 +89,15 @@ const ScrollStack = ({
 
     const endElementTop = endElement ? getElementOffset(endElement) : 0;
 
+    let topCardIndex = 0;
+    for (let j = 0; j < cardsRef.current.length; j++) {
+      const jCardTop = getElementOffset(cardsRef.current[j]);
+      const jTriggerStart = jCardTop - stackPositionPx - itemStackDistance * j;
+      if (scrollTop >= jTriggerStart) {
+        topCardIndex = j;
+      }
+    }
+
     cardsRef.current.forEach((card, i) => {
       if (!card) return;
 
@@ -101,20 +113,11 @@ const ScrollStack = ({
       const rotation = rotationAmount ? i * rotationAmount * scaleProgress : 0;
 
       let blur = 0;
-      if (blurAmount) {
-        let topCardIndex = 0;
-        for (let j = 0; j < cardsRef.current.length; j++) {
-          const jCardTop = getElementOffset(cardsRef.current[j]);
-          const jTriggerStart = jCardTop - stackPositionPx - itemStackDistance * j;
-          if (scrollTop >= jTriggerStart) {
-            topCardIndex = j;
-          }
-        }
-
-        if (i < topCardIndex) {
-          const depthInStack = topCardIndex - i;
-          blur = Math.max(0, depthInStack * blurAmount);
-        }
+      let overlayOpacity = 0;
+      if (blurAmount && i < topCardIndex) {
+        const depthInStack = topCardIndex - i;
+        blur = Math.max(0, depthInStack * blurAmount);
+        overlayOpacity = Math.min(0.85, depthInStack * 0.25);
       }
 
       let translateY = 0;
@@ -130,7 +133,8 @@ const ScrollStack = ({
         translateY: Math.round(translateY * 100) / 100,
         scale: Math.round(scale * 1000) / 1000,
         rotation: Math.round(rotation * 100) / 100,
-        blur: Math.round(blur * 100) / 100
+        blur: Math.round(blur * 100) / 100,
+        overlayOpacity: Math.round(overlayOpacity * 1000) / 1000
       };
 
       const lastTransform = lastTransformsRef.current.get(i);
@@ -139,14 +143,20 @@ const ScrollStack = ({
         Math.abs(lastTransform.translateY - newTransform.translateY) > 0.1 ||
         Math.abs(lastTransform.scale - newTransform.scale) > 0.001 ||
         Math.abs(lastTransform.rotation - newTransform.rotation) > 0.1 ||
-        Math.abs(lastTransform.blur - newTransform.blur) > 0.1;
+        Math.abs(lastTransform.blur - newTransform.blur) > 0.1 ||
+        Math.abs(lastTransform.overlayOpacity - newTransform.overlayOpacity) > 0.01;
 
       if (hasChanged) {
         const transform = `translate3d(0, ${newTransform.translateY}px, 0) scale(${newTransform.scale}) rotate(${newTransform.rotation}deg)`;
-        const filter = newTransform.blur > 0 ? `blur(${newTransform.blur}px)` : 'none';
 
         card.style.transform = transform;
-        card.style.filter = filter;
+
+        const overlay = card.querySelector('.scroll-stack-card-overlay');
+        if (overlay) {
+          overlay.style.backdropFilter = newTransform.blur > 0 ? `blur(${newTransform.blur}px) saturate(1.5)` : 'none';
+          overlay.style.webkitBackdropFilter = newTransform.blur > 0 ? `blur(${newTransform.blur}px) saturate(1.5)` : 'none';
+          overlay.style.opacity = newTransform.overlayOpacity;
+        }
 
         lastTransformsRef.current.set(i, newTransform);
       }
@@ -260,19 +270,7 @@ const ScrollStack = ({
         card.style.marginBottom = `${itemDistance}px`;
       }
       card.style.transformOrigin = 'top center';
-      card.style.backfaceVisibility = 'hidden';
       card.style.transform = 'translate3d(0, 0, 0)';
-      card.style.webkitTransform = 'translate3d(0, 0, 0)';
-      card.style.perspective = '1000px';
-      card.style.webkitPerspective = '1000px';
-      card.style.webkitFontSmoothing = 'antialiased';
-      card.style.mozOsxFontSmoothing = 'grayscale';
-
-      const innerElements = card.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, a, li');
-      innerElements.forEach(el => {
-        el.style.webkitFontSmoothing = 'antialiased';
-        el.style.mozOsxFontSmoothing = 'grayscale';
-      });
     });
 
     setupLenis();
