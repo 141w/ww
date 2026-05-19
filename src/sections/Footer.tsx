@@ -3,58 +3,72 @@ import { VscGithubInverted } from 'react-icons/vsc'
 
 export default function Footer() {
   return (
-    <footer className="py-10">
-      <div className="glass-card rounded-2xl p-8 mb-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--text-h)' }}>
-              有想法？一起聊聊。
-            </h3>
-            <p className="text-sm" style={{ color: 'var(--text)' }}>
-              无论是项目合作、技术咨询还是开源贡献，欢迎联系。
-            </p>
+    <footer>
+      <div className="terminal-window" style={{ marginBottom: '24px' }}>
+        <div className="terminal-bar">
+          <div className="terminal-dot" style={{ background: '#ff5f57' }} />
+          <div className="terminal-dot" style={{ background: '#febc2e' }} />
+          <div className="terminal-dot" style={{ background: '#28c840' }} />
+          <span className="terminal-comment" style={{ marginLeft: '8px', fontSize: '0.75rem' }}>
+            contact
+          </span>
+        </div>
+
+        <div className="terminal-body">
+          <div className="terminal-output" style={{ marginBottom: '12px' }}>
+            <span className="terminal-prompt">$</span>{' '}
+            <span className="terminal-cmd">echo "有想法？一起聊聊。"</span>
           </div>
+
+          <div className="terminal-comment" style={{ fontSize: '0.75rem', marginBottom: '16px' }}>
+            无论是项目合作、技术咨询还是开源贡献，欢迎联系。
+          </div>
+
           <a
             href="mailto:wweiqi77@163.com?subject=合作咨询"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200 border"
+            className="terminal-prompt"
             style={{
-              borderColor: 'var(--accent-border)',
-              color: 'var(--accent)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              border: '1px solid var(--accent-border)',
               background: 'var(--accent-bg)',
+              fontSize: '0.8125rem',
+              textDecoration: 'none',
             }}
           >
-            <Mail size={14} />
+            <Mail size={12} />
             wweiqi77@163.com
-            <ArrowUpRight size={14} />
+            <ArrowUpRight size={12} />
           </a>
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+        <div className="terminal-output" style={{ display: 'flex', gap: '16px', fontSize: '0.75rem' }}>
           <a
             href="https://github.com/141w"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-xs transition-colors"
-            style={{ color: 'var(--text)' }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', textDecoration: 'none' }}
           >
-            <VscGithubInverted size={14} />
+            <VscGithubInverted size={12} />
             GitHub
           </a>
           <a
             href="mailto:wweiqi77@163.com"
-            className="flex items-center gap-2 text-xs transition-colors"
-            style={{ color: 'var(--text)' }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', textDecoration: 'none' }}
           >
-            <Mail size={14} />
+            <Mail size={12} />
             邮箱
           </a>
         </div>
 
-        <p className="text-xs font-mono" style={{ color: 'var(--text)' }}>
+        <div className="terminal-comment" style={{ fontSize: '0.6875rem' }}>
           Three.js GLSL Shader · Lenis · 可变字体 · Framer Motion
-        </p>
+        </div>
       </div>
     </footer>
   )

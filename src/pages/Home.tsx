@@ -1,22 +1,41 @@
+import { useState, useEffect } from 'react'
 import Hero from '../sections/Hero'
 import Projects from '../sections/Projects'
 import TechStack from '../sections/TechStack'
 import About from '../sections/About'
 import Footer from '../sections/Footer'
-import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
-import GooeyNav from '../components/GooeyNav'
+
+const navItems = [
+  { label: 'home', href: '#hero' },
+  { label: 'projects', href: '#projects' },
+  { label: 'stack', href: '#stack' },
+  { label: 'about', href: '#about' },
+]
 
 export default function Home() {
-  const navItems = [
-    { label: '首页', href: '#hero' },
-    { label: '项目', href: '#projects' },
-    { label: '技术栈', href: '#stack' },
-    { label: '关于', href: '#about' },
-  ]
+  const [active, setActive] = useState(0)
+
+  useEffect(() => {
+    const sections = navItems.map(item => document.querySelector(item.href))
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const idx = sections.indexOf(entry.target)
+            if (idx !== -1) setActive(idx)
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+
+    sections.forEach(s => s && observer.observe(s))
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <>
-      <header
+      <nav
         style={{
           position: 'fixed',
           top: 0,
@@ -25,51 +44,62 @@ export default function Home() {
           zIndex: 100,
           display: 'flex',
           justifyContent: 'center',
-          padding: '1.2rem 0',
+          padding: '1rem 0',
         }}
       >
-        <GooeyNav
-          items={navItems}
-          particleCount={12}
-          particleDistances={[60, 8]}
-          particleR={80}
-          initialActiveIndex={0}
-          animationTime={500}
-          timeVariance={200}
-          colors={[1, 2, 3, 4]}
-        />
-      </header>
+        <div
+          className="terminal-window"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            padding: '0 4px',
+          }}
+        >
+          {navItems.map((item, i) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="terminal-prompt"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '4px',
+                padding: '8px 12px',
+                fontSize: '0.8125rem',
+                opacity: active === i ? 1 : 0.4,
+                transition: 'opacity 0.2s',
+                cursor: 'pointer',
+                textDecoration: 'none',
+              }}
+            >
+              <span style={{ color: active === i ? 'var(--green)' : 'inherit' }}>
+                {active === i ? '❯' : '·'}
+              </span>
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </nav>
 
       <div id="hero">
         <Hero />
       </div>
-      <ScrollStack
-        useWindowScroll={true}
-        itemDistance={60}
-        itemScale={0.02}
-        itemStackDistance={20}
-        stackPosition="15%"
-        scaleEndPosition="5%"
-        baseScale={0.9}
-        blurAmount={2}
-      >
-        <ScrollStackItem>
-          <div id="projects">
-            <Projects />
-          </div>
-        </ScrollStackItem>
-        <ScrollStackItem>
-          <div id="stack">
-            <TechStack />
-          </div>
-        </ScrollStackItem>
-        <ScrollStackItem>
-          <div id="about">
-            <About />
-          </div>
-        </ScrollStackItem>
-      </ScrollStack>
-      <Footer />
+
+      <div className="section-container section-padding" id="projects">
+        <Projects />
+      </div>
+
+      <div className="section-container section-padding" id="stack">
+        <TechStack />
+      </div>
+
+      <div className="section-container section-padding" id="about">
+        <About />
+      </div>
+
+      <div className="section-container" style={{ paddingBottom: '4rem' }}>
+        <Footer />
+      </div>
     </>
   )
 }

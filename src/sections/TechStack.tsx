@@ -2,19 +2,19 @@ import { motion } from 'motion/react'
 
 const categories = [
   {
-    label: 'Languages',
+    label: 'languages',
     items: ['Rust', 'Python', 'TypeScript', 'Go', 'C++', 'GLSL'],
   },
   {
-    label: 'AI / ML',
+    label: 'ai_ml',
     items: ['PyTorch', 'XGBoost', 'FAISS', 'LangChain', 'RAG'],
   },
   {
-    label: 'Infra',
+    label: 'infra',
     items: ['Three.js', 'Docker', 'PostgreSQL', 'Redis', 'Cloudflare'],
   },
   {
-    label: 'Frontend',
+    label: 'frontend',
     items: ['Electron', 'Framer Motion', 'TailwindCSS', 'Lenis'],
   },
 ]
@@ -23,67 +23,76 @@ export default function TechStack() {
   return (
     <section id="stack" className="relative">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
+        viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.5 }}
-        className="mb-8"
-        style={{ willChange: 'transform, opacity' }}
+        style={{ marginBottom: '32px' }}
       >
-        <span className="text-xs font-mono tracking-widest uppercase" style={{ color: 'var(--accent)' }}>
-          /stack
-        </span>
-        <h2 className="text-3xl sm:text-4xl font-bold mt-3" style={{ color: 'var(--text-h)' }}>
-          技术栈
-        </h2>
+        <div className="terminal-output" style={{ marginBottom: '4px' }}>
+          <span className="terminal-prompt">$</span>{' '}
+          <span className="terminal-cmd">cat ~/stack.json</span>
+        </div>
       </motion.div>
 
-      <div className="space-y-6">
-        {categories.map((cat, ci) => (
-          <motion.div
-            key={cat.label}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.4, delay: ci * 0.1 }}
-            style={{ willChange: 'transform, opacity' }}
-          >
-            <div className="flex items-center gap-4 mb-3">
-              <span className="text-xs font-mono uppercase tracking-widest shrink-0" style={{ color: 'var(--text)' }}>
-                {cat.label}
-              </span>
-              <div className="h-px flex-1" style={{
-                background: 'linear-gradient(to right, var(--border), transparent)'
-              }} />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="terminal-window">
+          <div className="terminal-bar">
+            <div className="terminal-dot" style={{ background: '#ff5f57' }} />
+            <div className="terminal-dot" style={{ background: '#febc2e' }} />
+            <div className="terminal-dot" style={{ background: '#28c840' }} />
+            <span className="terminal-comment" style={{ marginLeft: '8px', fontSize: '0.75rem' }}>
+              stack.json
+            </span>
+          </div>
+
+          <div className="terminal-body" style={{ fontFamily: 'var(--mono)', fontSize: '0.8125rem' }}>
+            <div className="terminal-output">
+              <span style={{ color: '#6b7280' }}>{'{'}</span>
             </div>
-            <div className="flex flex-wrap gap-2.5">
-              {cat.items.map((item) => (
-                <span
-                  key={item}
-                  className="px-4 py-2 text-sm rounded-xl border transition-all duration-200"
-                  style={{
-                    borderColor: 'var(--border)',
-                    color: 'var(--text)',
-                    background: 'rgba(255,255,255,0.02)',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--accent-border)'
-                    e.currentTarget.style.color = 'var(--text-h)'
-                    e.currentTarget.style.background = 'var(--accent-bg)'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--border)'
-                    e.currentTarget.style.color = 'var(--text)'
-                    e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
-                  }}
-                >
-                  {item}
-                </span>
-              ))}
+
+            {categories.map((cat, ci) => (
+              <motion.div
+                key={cat.label}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: ci * 0.1 }}
+                style={{ paddingLeft: '24px', marginBottom: ci < categories.length - 1 ? '16px' : 0 }}
+              >
+                <div className="terminal-output">
+                  <span className="terminal-key">"{cat.label}"</span>
+                  <span style={{ color: '#6b7280' }}>: [</span>
+                </div>
+
+                <div style={{ paddingLeft: '24px' }}>
+                  {cat.items.map((item, ii) => (
+                    <div key={item} className="terminal-output">
+                      <span style={{ color: '#6b7280' }}>{ii < cat.items.length - 1 ? '├─' : '└─'}</span>{' '}
+                      <span className="terminal-string">"{item}"</span>
+                      {ii < cat.items.length - 1 && <span style={{ color: '#6b7280' }}>,</span>}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="terminal-output">
+                  <span style={{ color: '#6b7280' }}>]</span>
+                  {ci < categories.length - 1 && <span style={{ color: '#6b7280' }}>,</span>}
+                </div>
+              </motion.div>
+            ))}
+
+            <div className="terminal-output">
+              <span style={{ color: '#6b7280' }}>{'}'}</span>
             </div>
-          </motion.div>
-        ))}
-      </div>
+          </div>
+        </div>
+      </motion.div>
     </section>
   )
 }

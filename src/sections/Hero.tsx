@@ -1,108 +1,195 @@
 import { motion } from 'motion/react'
-import TextPressure from '../components/TextPressure'
-import GooeyButton from '../components/GooeyButton'
 import { ArrowDown, Mail } from 'lucide-react'
 
 export default function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="section-container text-center z-10 pt-20 w-full">
+      <div className="section-container w-full pt-24 pb-16">
+        <div className="terminal-window max-w-3xl mx-auto">
+          <div className="terminal-bar">
+            <div className="terminal-dot" style={{ background: '#ff5f57' }} />
+            <div className="terminal-dot" style={{ background: '#febc2e' }} />
+            <div className="terminal-dot" style={{ background: '#28c840' }} />
+            <span className="terminal-comment" style={{ marginLeft: '8px', fontSize: '0.75rem' }}>
+              ~/portfolio
+            </span>
+          </div>
+
+          <div className="terminal-body" style={{ padding: '24px 20px' }}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="terminal-output" style={{ marginBottom: '8px' }}>
+                <span className="terminal-prompt">$</span>{' '}
+                <span className="terminal-cmd">whoami</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              style={{ marginBottom: '24px' }}
+            >
+              <h1
+                className="terminal-cmd"
+                style={{
+                  fontSize: 'clamp(1.25rem, 4vw, 1.75rem)',
+                  fontWeight: 600,
+                  lineHeight: 1.4,
+                  color: 'var(--text-h)',
+                }}
+              >
+                AI 系统构建者 — 让 AI Agent 在浏览器里自主运行
+              </h1>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              style={{ marginBottom: '8px' }}
+            >
+              <div className="terminal-output">
+                <span className="terminal-prompt">$</span>{' '}
+                <span className="terminal-cmd">cat mission.txt</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
+              className="terminal-output"
+              style={{
+                marginBottom: '32px',
+                paddingLeft: '16px',
+                borderLeft: '2px solid var(--border)',
+              }}
+            >
+              <p>
+                我构建在浏览器里运行的 AI Agent——
+                <br />
+                让安全分析、自动化和学习工具真正可用。
+              </p>
+              <p style={{ marginTop: '8px' }}>
+                从赋予 Agent 视觉能力的浏览器运行时，到狩猎零日漏洞的入侵检测引擎，
+                我关注延迟、可靠性，以及交付有思考能力的产品。
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 1.3 }}
+              className="terminal-output"
+              style={{ marginBottom: '8px' }}
+            >
+              <span className="terminal-prompt">$</span>{' '}
+              <span className="terminal-cmd">ls domains/</span>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 1.5 }}
+              className="terminal-output"
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '8px',
+                marginBottom: '32px',
+              }}
+            >
+              {['AI Agents', '安全 AI', '浏览器运行时', 'RAG 基础设施', '全栈工程'].map((d) => (
+                <span
+                  key={d}
+                  style={{
+                    padding: '4px 12px',
+                    borderRadius: '4px',
+                    border: '1px solid var(--border)',
+                    background: 'rgba(255,255,255,0.02)',
+                    fontSize: '0.75rem',
+                    color: 'var(--text)',
+                  }}
+                >
+                  {d}
+                </span>
+              ))}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 1.8 }}
+              style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}
+            >
+              <a
+                href="#projects"
+                className="terminal-prompt"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '8px 16px',
+                  borderRadius: '4px',
+                  border: '1px solid var(--green-dim)',
+                  background: 'rgba(74, 222, 128, 0.08)',
+                  fontSize: '0.8125rem',
+                  cursor: 'pointer',
+                  textDecoration: 'none',
+                }}
+              >
+                查看项目 <ArrowDown size={12} />
+              </a>
+              <a
+                href="mailto:wweiqi77@163.com?subject=合作咨询"
+                className="terminal-prompt"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '8px 16px',
+                  borderRadius: '4px',
+                  border: '1px solid var(--border)',
+                  background: 'rgba(255,255,255,0.02)',
+                  fontSize: '0.8125rem',
+                  cursor: 'pointer',
+                  textDecoration: 'none',
+                }}
+              >
+                聊聊合作 <Mail size={12} />
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 2.0 }}
+              className="terminal-output"
+              style={{ marginTop: '24px' }}
+            >
+              <span className="terminal-prompt">$</span>{' '}
+              <span className="cursor-blink" />
+            </motion.div>
+          </div>
+        </div>
+
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          style={{ willChange: 'transform, opacity' }}
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+          className="flex justify-center mt-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/[0.06] bg-white/[0.02] mb-8">
-            <span className="w-2 h-2 rounded-full bg-emerald-400/80 animate-pulse" />
-            <span className="text-xs font-mono" style={{ color: 'var(--text)' }}>AI 浏览器 · 智能代理 · 安全基础设施</span>
+          <div
+            className="terminal-output"
+            style={{ fontSize: '0.6875rem', opacity: 0.4 }}
+          >
+            ↓ scroll
           </div>
         </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
-          style={{ width: '100%', height: '25vh', margin: '0 auto', maxWidth: 900, willChange: 'transform, opacity' }}
-        >
-          <TextPressure
-            text="HELLO"
-            flex={true}
-            alpha={false}
-            stroke={false}
-            width={true}
-            weight={true}
-            italic={true}
-            textColor="#ffffff"
-            strokeColor="#ff0000"
-            minFontSize={48}
-          />
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-          className="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-10"
-          style={{ color: 'var(--text)', willChange: 'transform, opacity' }}
-        >
-          我构建在浏览器里运行的 AI Agent——让安全分析、自动化和学习工具真正可用。
-          <br />
-          从赋予 Agent 视觉能力的浏览器运行时，到狩猎零日漏洞的入侵检测引擎，
-          我关注延迟、可靠性，以及交付有思考能力的产品。
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.45, ease: 'easeOut' }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          style={{ willChange: 'transform, opacity' }}
-        >
-          <GooeyButton
-            href="#projects"
-            particleCount={8}
-            particleDistances={[50, 6]}
-            particleR={60}
-            animationTime={400}
-            timeVariance={150}
-          >
-            查看项目
-            <ArrowDown size={14} />
-          </GooeyButton>
-          <GooeyButton
-            href="mailto:wweiqi77@163.com?subject=合作咨询"
-            particleCount={8}
-            particleDistances={[50, 6]}
-            particleR={60}
-            animationTime={400}
-            timeVariance={150}
-          >
-            聊聊合作
-            <Mail size={14} />
-          </GooeyButton>
-          <GooeyButton
-            href="#about"
-            particleCount={8}
-            particleDistances={[50, 6]}
-            particleR={60}
-            animationTime={400}
-            timeVariance={150}
-          >
-            关于我
-          </GooeyButton>
-        </motion.div>
       </div>
-
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <div className="w-5 h-8 rounded-full border border-white/[0.1] flex items-start justify-center p-1.5">
-          <div className="w-1 h-2 rounded-full bg-white/30 animate-pulse" />
-        </div>
-      </motion.div>
     </section>
   )
 }

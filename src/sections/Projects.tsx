@@ -1,6 +1,6 @@
 import { motion } from 'motion/react'
 import { projects } from '../data/projects'
-import { ArrowUpRight, Sparkles } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 
 export default function Projects() {
   const featured = projects.find(p => p.featured)
@@ -9,86 +9,87 @@ export default function Projects() {
   return (
     <section id="projects" className="relative">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
+        viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.5 }}
-        className="mb-10"
-        style={{ willChange: 'transform, opacity' }}
+        style={{ marginBottom: '32px' }}
       >
-        <span className="text-xs font-mono tracking-widest uppercase" style={{ color: 'var(--accent)' }}>
-          /projects
-        </span>
-        <h2 className="text-3xl sm:text-4xl font-bold mt-3" style={{ color: 'var(--text-h)' }}>
-          精选项目
-        </h2>
-        <p className="mt-2 max-w-lg" style={{ color: 'var(--text)' }}>
-          AI、系统和基础设施交叉领域的开源项目。
-        </p>
+        <div className="terminal-output" style={{ marginBottom: '4px' }}>
+          <span className="terminal-prompt">$</span>{' '}
+          <span className="terminal-cmd">ls -la ~/projects/</span>
+        </div>
+        <div className="terminal-comment" style={{ fontSize: '0.75rem' }}>
+          AI、系统和基础设施交叉领域的开源项目
+        </div>
       </motion.div>
 
       {featured && (
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
+          viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6 }}
-          className="mb-10"
-          style={{ willChange: 'transform, opacity' }}
+          style={{ marginBottom: '32px' }}
         >
-          <div className="flex items-center gap-2 mb-4">
-            <Sparkles size={14} style={{ color: 'var(--accent)' }} />
-            <span className="text-xs font-mono uppercase tracking-widest" style={{ color: 'var(--accent)' }}>
-              Featured
-            </span>
-          </div>
-          <div className="glass-card rounded-2xl p-8 md:p-10 flex flex-col md:flex-row gap-8 border border-white/[0.08]" style={{
-            background: 'linear-gradient(135deg, rgba(192,132,252,0.06) 0%, rgba(255,255,255,0.03) 50%, rgba(56,189,248,0.04) 100%)',
-          }}>
-            <div className="flex-1">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-2xl font-bold" style={{ color: 'var(--text-h)' }}>
-                    {featured.title}
-                  </h3>
-                  <p className="text-sm mt-1 font-mono" style={{ color: 'var(--accent)' }}>
-                    {featured.tagline}
-                  </p>
-                </div>
-                <ArrowUpRight size={22} className="mt-1 shrink-0 opacity-40" style={{ color: 'var(--text)' }} />
+          <div className="terminal-window">
+            <div className="terminal-bar">
+              <div className="terminal-dot" style={{ background: '#ff5f57' }} />
+              <div className="terminal-dot" style={{ background: '#febc2e' }} />
+              <div className="terminal-dot" style={{ background: '#28c840' }} />
+              <span className="terminal-comment" style={{ marginLeft: '8px', fontSize: '0.75rem' }}>
+                ⭐ featured — {featured.title.toLowerCase().replace(/\s+/g, '-')}
+              </span>
+            </div>
+
+            <div className="terminal-body">
+              <div className="terminal-output" style={{ marginBottom: '12px' }}>
+                <span className="terminal-prompt">❯</span>{' '}
+                <span className="terminal-cmd" style={{ color: 'var(--accent)' }}>
+                  {featured.title}
+                </span>
+                <span style={{ marginLeft: '8px', color: '#6b7280' }}>
+                  — {featured.tagline}
+                </span>
               </div>
 
-              <p className="text-base leading-relaxed mb-4" style={{ color: 'var(--text)' }}>
+              <p className="terminal-output" style={{ marginBottom: '16px', lineHeight: 1.7 }}>
                 {featured.description}
               </p>
 
-              <div className="inline-block px-4 py-2 rounded-lg mb-5" style={{
-                background: 'rgba(192,132,252,0.08)',
-                border: '1px solid rgba(192,132,252,0.15)',
-              }}>
-                <p className="text-sm font-medium" style={{ color: 'var(--accent)' }}>
-                  {featured.conclusion}
+              <div
+                style={{
+                  padding: '12px 16px',
+                  borderRadius: '4px',
+                  background: 'rgba(192,132,252,0.06)',
+                  border: '1px solid rgba(192,132,252,0.12)',
+                  marginBottom: '16px',
+                }}
+              >
+                <p className="terminal-output" style={{ color: 'var(--accent)', fontSize: '0.8125rem' }}>
+                  → {featured.conclusion}
                 </p>
               </div>
 
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
+              <div style={{ marginBottom: '16px' }}>
                 {featured.highlights.map((h) => (
-                  <li key={h} className="text-sm flex items-center gap-2" style={{ color: 'var(--text)' }}>
-                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: 'var(--accent)' }} />
-                    {h}
-                  </li>
+                  <div key={h} className="terminal-output" style={{ marginBottom: '2px' }}>
+                    <span style={{ color: '#6b7280' }}>  ├─</span> {h}
+                  </div>
                 ))}
-              </ul>
+              </div>
 
-              <div className="flex flex-wrap gap-2 mb-5">
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px' }}>
                 {featured.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-block px-3 py-1.5 text-xs font-medium rounded-full border"
+                    className="terminal-output"
                     style={{
-                      borderColor: 'var(--accent-border)',
-                      color: 'var(--text)',
+                      padding: '2px 10px',
+                      borderRadius: '3px',
+                      border: '1px solid var(--accent-border)',
                       background: 'var(--accent-bg)',
+                      fontSize: '0.6875rem',
                     }}
                   >
                     {tag}
@@ -98,11 +99,16 @@ export default function Projects() {
 
               <a
                 href={featured.links.github}
-                className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors hover:gap-2.5"
-                style={{ color: 'var(--accent)' }}
+                className="terminal-prompt"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  fontSize: '0.8125rem',
+                  textDecoration: 'none',
+                }}
               >
-                查看详情
-                <ArrowUpRight size={14} />
+                查看详情 <ArrowUpRight size={12} />
               </a>
             </div>
           </div>
@@ -111,83 +117,105 @@ export default function Projects() {
 
       {others.length > 0 && (
         <>
-          <div className="flex items-center gap-3 mb-6">
-            <div className="h-px flex-1" style={{ background: 'linear-gradient(to right, transparent, var(--border), transparent)' }} />
-            <span className="text-xs font-mono tracking-widest" style={{ color: 'var(--text)' }}>其他项目</span>
-            <div className="h-px flex-1" style={{ background: 'linear-gradient(to right, transparent, var(--border), transparent)' }} />
-          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="terminal-comment"
+            style={{
+              fontSize: '0.75rem',
+              textAlign: 'center',
+              marginBottom: '24px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+            }}
+          >
+            <span style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+            other projects
+            <span style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {others.map((project, index) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
+                viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                style={{ willChange: 'transform, opacity' }}
               >
-                <div className="glass-card glass-card-hover rounded-2xl p-6 h-full flex flex-col">
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between mb-3">
-                      <div>
-                        <h3 className="text-lg font-semibold" style={{ color: 'var(--text-h)' }}>
-                          {project.title}
-                        </h3>
-                        <p className="text-sm mt-0.5 font-mono" style={{ color: 'var(--accent)' }}>
-                          {project.tagline}
-                        </p>
-                      </div>
-                      <ArrowUpRight size={18} className="mt-1 shrink-0 opacity-40" style={{ color: 'var(--text)' }} />
+                <div className="terminal-window" style={{ height: '100%' }}>
+                  <div className="terminal-bar">
+                    <div className="terminal-dot" style={{ background: '#ff5f57' }} />
+                    <div className="terminal-dot" style={{ background: '#febc2e' }} />
+                    <div className="terminal-dot" style={{ background: '#28c840' }} />
+                    <span className="terminal-comment" style={{ marginLeft: '8px', fontSize: '0.75rem' }}>
+                      {project.id}
+                    </span>
+                  </div>
+
+                  <div className="terminal-body">
+                    <div className="terminal-output" style={{ marginBottom: '8px' }}>
+                      <span className="terminal-cmd" style={{ color: 'var(--accent)' }}>
+                        {project.title}
+                      </span>
+                      <span style={{ marginLeft: '8px', color: '#6b7280', fontSize: '0.75rem' }}>
+                        — {project.tagline}
+                      </span>
                     </div>
 
-                    <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text)' }}>
+                    <p className="terminal-output" style={{ marginBottom: '12px', fontSize: '0.75rem', lineHeight: 1.6 }}>
                       {project.description}
                     </p>
 
-                    <div className="px-3 py-2 rounded-lg mb-3" style={{
-                      background: 'rgba(255,255,255,0.02)',
-                      border: '1px solid rgba(255,255,255,0.04)',
-                    }}>
-                      <p className="text-xs" style={{ color: 'var(--text)' }}>
-                        {project.conclusion}
+                    <div
+                      style={{
+                        padding: '8px 12px',
+                        borderRadius: '3px',
+                        background: 'rgba(255,255,255,0.02)',
+                        border: '1px solid rgba(255,255,255,0.04)',
+                        marginBottom: '12px',
+                      }}
+                    >
+                      <p className="terminal-output" style={{ fontSize: '0.6875rem' }}>
+                        → {project.conclusion}
                       </p>
                     </div>
 
-                    <ul className="space-y-1.5 mb-4">
-                      {project.highlights.slice(0, 3).map((h) => (
-                        <li key={h} className="text-xs flex items-center gap-2" style={{ color: 'var(--text)' }}>
-                          <span className="w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: 'var(--text)' }} />
-                          {h}
-                        </li>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginBottom: '12px' }}>
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="terminal-output"
+                          style={{
+                            padding: '2px 8px',
+                            borderRadius: '3px',
+                            border: '1px solid var(--border)',
+                            background: 'rgba(255,255,255,0.02)',
+                            fontSize: '0.625rem',
+                          }}
+                        >
+                          {tag}
+                        </span>
                       ))}
-                    </ul>
-                  </div>
+                    </div>
 
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="inline-block px-3 py-1.5 text-xs font-medium rounded-full border"
-                        style={{
-                          borderColor: 'var(--border)',
-                          color: 'var(--text)',
-                          background: 'var(--accent-bg)',
-                        }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                    <a
+                      href={project.links.github}
+                      className="terminal-prompt"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        fontSize: '0.75rem',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      查看详情 <ArrowUpRight size={10} />
+                    </a>
                   </div>
-
-                  <a
-                    href={project.links.github}
-                    className="inline-flex items-center gap-1.5 text-xs transition-colors"
-                    style={{ color: 'var(--text)' }}
-                  >
-                    查看详情
-                    <ArrowUpRight size={12} />
-                  </a>
                 </div>
               </motion.div>
             ))}
