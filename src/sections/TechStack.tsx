@@ -28,6 +28,7 @@ export default function TechStack() {
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.5 }}
         className="mb-8"
+        style={{ willChange: 'transform, opacity' }}
       >
         <span className="text-xs font-mono tracking-widest uppercase" style={{ color: 'var(--accent)' }}>
           /stack
@@ -45,6 +46,7 @@ export default function TechStack() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.4, delay: ci * 0.1 }}
+            style={{ willChange: 'transform, opacity' }}
           >
             <div className="flex items-center gap-4 mb-3">
               <span className="text-xs font-mono uppercase tracking-widest shrink-0" style={{ color: 'var(--text)' }}>

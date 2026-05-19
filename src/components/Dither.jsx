@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
+import { registerRAF, unregisterRAF } from '../hooks/rafManager';
 
 import './Dither.css';
 
@@ -134,7 +135,7 @@ export default function Dither({
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
   const uniformsRef = useRef(null);
-  const animFrameRef = useRef(null);
+  const clockRef = useRef(null);
   const mouseRef = useRef({ x: 0, y: 0 });
 
   const prefersReducedMotion = typeof window !== 'undefined' &&
@@ -217,8 +218,9 @@ export default function Dither({
     window.addEventListener('mousemove', handleMouseMove);
 
     const clock = new THREE.Clock();
+    clockRef.current = clock;
 
-    const animate = () => {
+    const render = () => {
       uniforms.uTime.value = clock.getElapsedTime();
       uniforms.uMouse.value.set(mouseRef.current.x, mouseRef.current.y);
       uniforms.uMouseRadius.value = mouseRadius;
@@ -231,13 +233,12 @@ export default function Dither({
       uniforms.uDisableAnimation.value = disableAnimation ? 1 : 0;
 
       renderer.render(scene, camera);
-      animFrameRef.current = requestAnimationFrame(animate);
     };
 
-    animate();
+    registerRAF('dither', render);
 
     return () => {
-      cancelAnimationFrame(animFrameRef.current);
+      unregisterRAF('dither');
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       renderer.dispose();

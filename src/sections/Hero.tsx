@@ -11,6 +11,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
+          style={{ willChange: 'transform, opacity' }}
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/[0.06] bg-white/[0.02] mb-8">
             <span className="w-2 h-2 rounded-full bg-emerald-400/80 animate-pulse" />
@@ -22,7 +23,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
-          style={{ width: '100%', height: '25vh', margin: '0 auto', maxWidth: 900 }}
+          style={{ width: '100%', height: '25vh', margin: '0 auto', maxWidth: 900, willChange: 'transform, opacity' }}
         >
           <TextPressure
             text="HELLO"
@@ -43,7 +44,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
           className="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-10"
-          style={{ color: 'var(--text)' }}
+          style={{ color: 'var(--text)', willChange: 'transform, opacity' }}
         >
           我构建在浏览器里运行的 AI Agent——让安全分析、自动化和学习工具真正可用。
           <br />
@@ -56,6 +57,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45, ease: 'easeOut' }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          style={{ willChange: 'transform, opacity' }}
         >
           <GooeyButton
             href="#projects"

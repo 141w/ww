@@ -17,6 +17,7 @@ export default function About() {
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.5 }}
         className="mb-8"
+        style={{ willChange: 'transform, opacity' }}
       >
         <span className="text-xs font-mono tracking-widest uppercase" style={{ color: 'var(--accent)' }}>
           /about
@@ -32,6 +33,7 @@ export default function About() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.5 }}
+          style={{ willChange: 'transform, opacity' }}
         >
           <p className="text-base leading-relaxed" style={{ color: 'var(--text)' }}>
             我做一件事：让 AI 不只是聊天框里的玩具，而是能在真实系统里跑起来的工具。
@@ -53,6 +55,7 @@ export default function About() {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
               className="flex items-start gap-4"
+              style={{ willChange: 'transform, opacity' }}
             >
               <div
                 className="flex items-center justify-center w-8 h-8 rounded-lg border shrink-0 mt-0.5"
