@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import BootSequence from '../components/BootSequence'
+import InteractiveTerminal from '../components/InteractiveTerminal'
 import Hero from '../sections/Hero'
 import Projects from '../sections/Projects'
 import TechStack from '../sections/TechStack'
@@ -14,8 +16,16 @@ const navItems = [
 
 export default function Home() {
   const [active, setActive] = useState(0)
+  const [booted, setBooted] = useState(false)
 
   useEffect(() => {
+    const hasBooted = sessionStorage.getItem('boot-complete')
+    if (hasBooted) setBooted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!booted) return
+
     const sections = navItems.map(item => document.querySelector(item.href))
     const observer = new IntersectionObserver(
       entries => {
@@ -31,10 +41,24 @@ export default function Home() {
 
     sections.forEach(s => s && observer.observe(s))
     return () => observer.disconnect()
+  }, [booted])
+
+  const handleTerminalCommand = useCallback((cmd: string) => {
+    if (cmd.startsWith('open ')) {
+      const name = cmd.split(' ')[1]
+      const el = document.querySelector(`#project-${name}`)
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        }, 100)
+      }
+    }
   }, [])
 
   return (
     <>
+      {!booted && <BootSequence onComplete={() => setBooted(true)} />}
+
       <nav
         style={{
           position: 'fixed',
@@ -45,6 +69,9 @@ export default function Home() {
           display: 'flex',
           justifyContent: 'center',
           padding: '1rem 0',
+          opacity: booted ? 1 : 0,
+          transition: 'opacity 0.5s',
+          pointerEvents: booted ? 'auto' : 'none',
         }}
       >
         <div
@@ -81,25 +108,34 @@ export default function Home() {
         </div>
       </nav>
 
-      <div id="hero">
-        <Hero />
+      <div
+        style={{
+          opacity: booted ? 1 : 0,
+          transition: 'opacity 0.8s',
+        }}
+      >
+        <div id="hero">
+          <Hero />
+        </div>
+
+        <div className="section-container section-padding" id="projects">
+          <Projects />
+        </div>
+
+        <div className="section-container section-padding" id="stack">
+          <TechStack />
+        </div>
+
+        <div className="section-container section-padding" id="about">
+          <About />
+        </div>
+
+        <div className="section-container" style={{ paddingBottom: '4rem' }}>
+          <Footer />
+        </div>
       </div>
 
-      <div className="section-container section-padding" id="projects">
-        <Projects />
-      </div>
-
-      <div className="section-container section-padding" id="stack">
-        <TechStack />
-      </div>
-
-      <div className="section-container section-padding" id="about">
-        <About />
-      </div>
-
-      <div className="section-container" style={{ paddingBottom: '4rem' }}>
-        <Footer />
-      </div>
+      {booted && <InteractiveTerminal onCommand={handleTerminalCommand} />}
     </>
   )
 }

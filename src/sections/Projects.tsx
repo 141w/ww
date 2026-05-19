@@ -31,6 +31,7 @@ export default function Projects() {
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6 }}
           style={{ marginBottom: '32px' }}
+          id={`project-${featured.id}`}
         >
           <div className="terminal-window">
             <div className="terminal-bar">
@@ -145,6 +146,7 @@ export default function Projects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                id={`project-${project.id}`}
               >
                 <div className="terminal-window" style={{ height: '100%' }}>
                   <div className="terminal-bar">
