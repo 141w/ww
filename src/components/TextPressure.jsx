@@ -54,6 +54,10 @@ const TextPressure = ({
 
   const chars = text.split('');
 
+  const prefersReducedMotion = typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const shouldDisable = prefersReducedMotion;
+
   useEffect(() => {
     const handleMouseMove = e => {
       cursorRef.current.x = e.clientX;
@@ -114,6 +118,8 @@ const TextPressure = ({
   }, [setSize]);
 
   useEffect(() => {
+    if (shouldDisable) return;
+
     let rafId;
     const animate = () => {
       mouseRef.current.x += (cursorRef.current.x - mouseRef.current.x) / 15;
@@ -155,7 +161,7 @@ const TextPressure = ({
 
     animate();
     return () => cancelAnimationFrame(rafId);
-  }, [width, weight, italic, alpha]);
+  }, [width, weight, italic, alpha, shouldDisable]);
 
   const styleElement = useMemo(() => {
     return (

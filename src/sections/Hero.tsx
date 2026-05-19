@@ -1,7 +1,7 @@
 import { motion } from 'motion/react'
 import TextPressure from '../components/TextPressure'
 import GooeyButton from '../components/GooeyButton'
-import { ArrowDown } from 'lucide-react'
+import { ArrowDown, Mail } from 'lucide-react'
 
 export default function Hero() {
   return (
@@ -14,7 +14,7 @@ export default function Hero() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/[0.06] bg-white/[0.02] mb-8">
             <span className="w-2 h-2 rounded-full bg-emerald-400/80 animate-pulse" />
-            <span className="text-xs font-mono" style={{ color: 'var(--text)' }}>全栈 · AI 系统构建者</span>
+            <span className="text-xs font-mono" style={{ color: 'var(--text)' }}>AI 浏览器 · 智能代理 · 安全基础设施</span>
           </div>
         </motion.div>
 
@@ -45,9 +45,10 @@ export default function Hero() {
           className="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-10"
           style={{ color: 'var(--text)' }}
         >
-          构建 AI 浏览器、智能代理、安全检测与检索基础设施。
+          我构建在浏览器里运行的 AI Agent——让安全分析、自动化和学习工具真正可用。
           <br />
-          关注延迟、可靠性与交付有思考能力的产品。
+          从赋予 Agent 视觉能力的浏览器运行时，到狩猎零日漏洞的入侵检测引擎，
+          我关注延迟、可靠性，以及交付有思考能力的产品。
         </motion.p>
 
         <motion.div
@@ -66,6 +67,17 @@ export default function Hero() {
           >
             查看项目
             <ArrowDown size={14} />
+          </GooeyButton>
+          <GooeyButton
+            href="mailto:wweiqi77@163.com?subject=合作咨询"
+            particleCount={8}
+            particleDistances={[50, 6]}
+            particleR={60}
+            animationTime={400}
+            timeVariance={150}
+          >
+            聊聊合作
+            <Mail size={14} />
           </GooeyButton>
           <GooeyButton
             href="#about"

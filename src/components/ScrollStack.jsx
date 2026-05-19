@@ -9,6 +9,23 @@ export const ScrollStackItem = ({ children, itemClassName = '' }) => (
   </div>
 );
 
+/**
+ * @param {{
+ *   children: React.ReactNode;
+ *   className?: string;
+ *   itemDistance?: number;
+ *   itemScale?: number;
+ *   itemStackDistance?: number;
+ *   stackPosition?: string;
+ *   scaleEndPosition?: string;
+ *   baseScale?: number;
+ *   scaleDuration?: number;
+ *   rotationAmount?: number;
+ *   blurAmount?: number;
+ *   useWindowScroll?: boolean;
+ *   onStackComplete?: () => void;
+ * }} props
+ */
 const ScrollStack = ({
   children,
   className = '',
@@ -22,7 +39,7 @@ const ScrollStack = ({
   rotationAmount = 0,
   blurAmount = 0,
   useWindowScroll = false,
-  onStackComplete
+  onStackComplete = () => {},
 }) => {
   const scrollerRef = useRef(null);
   const stackCompletedRef = useRef(false);
@@ -31,6 +48,10 @@ const ScrollStack = ({
   const cardsRef = useRef([]);
   const lastTransformsRef = useRef(new Map());
   const isUpdatingRef = useRef(false);
+
+  const prefersReducedMotion = typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const shouldReduceMotion = prefersReducedMotion;
 
   const calculateProgress = useCallback((scrollTop, start, end) => {
     if (scrollTop < start) return 0;
@@ -114,7 +135,7 @@ const ScrollStack = ({
 
       let blur = 0;
       let overlayOpacity = 0;
-      if (blurAmount && i < topCardIndex) {
+      if (blurAmount && i < topCardIndex && !shouldReduceMotion) {
         const depthInStack = topCardIndex - i;
         blur = Math.max(0, depthInStack * blurAmount);
         overlayOpacity = Math.min(0.85, depthInStack * 0.25);
@@ -196,13 +217,13 @@ const ScrollStack = ({
   const setupLenis = useCallback(() => {
     if (useWindowScroll) {
       const lenis = new Lenis({
-        duration: 1.2,
+        duration: shouldReduceMotion ? 0.5 : 1.2,
         easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
+        smoothWheel: !shouldReduceMotion,
         touchMultiplier: 2,
         infinite: false,
         wheelMultiplier: 1,
-        lerp: 0.1,
+        lerp: shouldReduceMotion ? 0.2 : 0.1,
         syncTouch: true,
         syncTouchLerp: 0.075
       });
@@ -224,16 +245,16 @@ const ScrollStack = ({
       const lenis = new Lenis({
         wrapper: scroller,
         content: scroller.querySelector('.scroll-stack-inner'),
-        duration: 1.2,
+        duration: shouldReduceMotion ? 0.5 : 1.2,
         easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
+        smoothWheel: !shouldReduceMotion,
         touchMultiplier: 2,
         infinite: false,
         gestureOrientationHandler: true,
         normalizeWheel: true,
         wheelMultiplier: 1,
         touchInertiaMultiplier: 35,
-        lerp: 0.1,
+        lerp: shouldReduceMotion ? 0.2 : 0.1,
         syncTouch: true,
         syncTouchLerp: 0.075,
         touchInertia: 0.6
@@ -250,7 +271,7 @@ const ScrollStack = ({
       lenisRef.current = lenis;
       return lenis;
     }
-  }, [handleScroll, useWindowScroll]);
+  }, [handleScroll, useWindowScroll, shouldReduceMotion]);
 
   useLayoutEffect(() => {
     const scroller = scrollerRef.current;

@@ -137,9 +137,28 @@ export default function Dither({
   const animFrameRef = useRef(null);
   const mouseRef = useRef({ x: 0, y: 0 });
 
+  const prefersReducedMotion = typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const shouldDisable = disableAnimation || prefersReducedMotion;
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    if (shouldDisable) {
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#0a0a0f');
+      gradient.addColorStop(0.5, '#0d0d15');
+      gradient.addColorStop(1, '#0a0a0f');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      return;
+    }
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
@@ -225,7 +244,8 @@ export default function Dither({
       geometry.dispose();
       material.dispose();
     };
-  }, [waveSpeed, waveFrequency, waveAmplitude, waveColor, colorNum, pixelSize, disableAnimation, enableMouseInteraction, mouseRadius]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [waveSpeed, waveFrequency, waveAmplitude, waveColor, colorNum, pixelSize, disableAnimation, enableMouseInteraction, mouseRadius, shouldDisable]);
 
   return (
     <canvas

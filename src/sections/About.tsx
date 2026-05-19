@@ -1,11 +1,11 @@
 import { motion } from 'motion/react'
 
 const domains = [
-  { label: 'AI Agents', desc: '自主推理、工具使用与多 Agent 编排系统' },
-  { label: 'AI 基础设施', desc: 'RAG 管道、向量数据库、Embedding 服务与 LLM 部署' },
-  { label: '浏览器运行时', desc: '无头浏览器、Web 自动化、DOM 智能与 Agent 浏览' },
-  { label: '安全 AI', desc: '基于机器学习的威胁检测、异常评分与入侵防御' },
-  { label: '全栈工程', desc: '从 GPU kernel 到 React 组件的系统设计' },
+  { label: 'AI Agents', desc: '自主推理、工具使用与多 Agent 编排' },
+  { label: 'AI 基础设施', desc: 'RAG 管道、向量数据库与 LLM 部署' },
+  { label: '浏览器运行时', desc: '无头浏览器、Web 自动化与 Agent 浏览' },
+  { label: '安全 AI', desc: '威胁检测、异常评分与入侵防御' },
+  { label: '全栈工程', desc: '从 GPU kernel 到 React 组件' },
 ]
 
 export default function About() {
@@ -34,10 +34,13 @@ export default function About() {
           transition={{ duration: 0.5 }}
         >
           <p className="text-base leading-relaxed" style={{ color: 'var(--text)' }}>
-            我构建 AI 原生系统——从赋予 Agent 视觉和操作能力的浏览器运行时，到狩猎零日漏洞的入侵检测引擎，再到让 LLM 真正有用的 RAG 基础设施。
+            我做一件事：让 AI 不只是聊天框里的玩具，而是能在真实系统里跑起来的工具。
           </p>
           <p className="text-base leading-relaxed mt-4" style={{ color: 'var(--text)' }}>
-            我的工作位于系统工程与 AI 应用的交叉点。我在乎延迟、可靠性，以及交付有思考能力的产品。
+            从写 Rust 静态分析工具扫描 crates.io 的 unsafe 代码，到用 XGBoost 做入侵检测把误报率压下来，再到给浏览器赋予 Agent 视觉——我的工作始终在同一个交叉点上：系统工程的严谨性和 AI 的可能性。
+          </p>
+          <p className="text-base leading-relaxed mt-4" style={{ color: 'var(--text)' }}>
+            我相信好的 AI 产品应该像好的基础设施一样——你注意不到它，因为它一直在工作。延迟要低，输出要可靠，出了问题要知道去哪找原因。
           </p>
         </motion.div>
 

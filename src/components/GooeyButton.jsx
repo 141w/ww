@@ -1,9 +1,23 @@
 import { useRef, useEffect, useState, useCallback } from 'react';
 import './GooeyButton.css';
 
+/**
+ * @param {{
+ *   children: React.ReactNode;
+ *   onClick?: (e: React.MouseEvent) => void;
+ *   href?: string;
+ *   animationTime?: number;
+ *   particleCount?: number;
+ *   particleDistances?: number[];
+ *   particleR?: number;
+ *   timeVariance?: number;
+ *   colors?: number[];
+ *   className?: string;
+ * }} props
+ */
 const GooeyButton = ({
   children,
-  onClick,
+  onClick = () => {},
   href,
   animationTime = 500,
   particleCount = 10,
@@ -140,7 +154,6 @@ const GooeyButton = ({
       >
         {children}
       </Tag>
-      <span className="effect filter" ref={filterRef} />
       <span className="effect text" ref={textRef} />
     </div>
   );
