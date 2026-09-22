@@ -74,12 +74,13 @@ export default function InteractiveTerminal({ onCommand }: InteractiveTerminalPr
         setHistory(prev => [...prev, { type: 'output', content: COMMANDS.help }])
         break
 
-      case 'ls':
+      case 'ls': {
         const list = Object.entries(PROJECT_MAP)
           .map(([id, desc]) => `  ${id}/  ${desc}`)
           .join('\n')
         setHistory(prev => [...prev, { type: 'output', content: `projects/\n${list}` }])
         break
+      }
 
       case 'open':
         if (arg && PROJECT_MAP[arg]) {

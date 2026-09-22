@@ -16,12 +16,9 @@ const navItems = [
 
 export default function Home() {
   const [active, setActive] = useState(0)
-  const [booted, setBooted] = useState(false)
-
-  useEffect(() => {
-    const hasBooted = sessionStorage.getItem('boot-complete')
-    if (hasBooted) setBooted(true)
-  }, [])
+  const [booted, setBooted] = useState(
+    () => sessionStorage.getItem('boot-complete') !== null
+  )
 
   useEffect(() => {
     if (!booted) return
