@@ -4,6 +4,7 @@ import InteractiveTerminal from '../components/InteractiveTerminal'
 import Hero from '../sections/Hero'
 import Projects from '../sections/Projects'
 import TechStack from '../sections/TechStack'
+import Experience from '../sections/Experience'
 import About from '../sections/About'
 import Footer from '../sections/Footer'
 
@@ -11,6 +12,7 @@ const navItems = [
   { label: 'home', href: '#hero' },
   { label: 'projects', href: '#projects' },
   { label: 'stack', href: '#stack' },
+  { label: 'exp', href: '#experience' },
   { label: 'about', href: '#about' },
 ]
 
@@ -121,6 +123,10 @@ export default function Home() {
 
         <div className="section-container section-padding" id="stack">
           <TechStack />
+        </div>
+
+        <div className="section-container section-padding" id="experience">
+          <Experience />
         </div>
 
         <div className="section-container section-padding" id="about">
