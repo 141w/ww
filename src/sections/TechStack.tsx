@@ -3,19 +3,19 @@ import { motion } from 'motion/react'
 const categories = [
   {
     label: 'languages',
-    items: ['Rust', 'Python', 'TypeScript', 'Go', 'C++', 'GLSL'],
+    items: ['Python', 'TypeScript', 'JavaScript', 'SQL', 'GLSL'],
   },
   {
     label: 'ai_ml',
-    items: ['PyTorch', 'XGBoost', 'FAISS', 'LangChain', 'RAG'],
+    items: ['RAG', 'pgvector', 'FAISS', 'LightGBM', 'SHAP', 'LangGraph'],
   },
   {
     label: 'infra',
-    items: ['Three.js', 'Docker', 'PostgreSQL', 'Redis', 'Cloudflare'],
+    items: ['Three.js', 'Docker', 'PostgreSQL', 'SQLite', 'WebSocket'],
   },
   {
     label: 'frontend',
-    items: ['Electron', 'Framer Motion', 'TailwindCSS', 'Lenis'],
+    items: ['Electron', 'React 19', 'Vue 3', 'TailwindCSS', '微信小程序'],
   },
 ]
 

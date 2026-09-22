@@ -2,10 +2,11 @@ import { motion } from 'motion/react'
 
 const domains = [
   { label: 'AI Agents', desc: '自主推理、工具使用与多 Agent 编排' },
-  { label: 'AI 基础设施', desc: 'RAG 管道、向量数据库与 LLM 部署' },
-  { label: '浏览器运行时', desc: '无头浏览器、Web 自动化与 Agent 浏览' },
+  { label: 'AI 基础设施', desc: 'RAG 管道、pgvector 检索与 LLM 部署' },
+  { label: '浏览器运行时', desc: 'Electron 桌面应用、Web 自动化与 Agent 浏览' },
   { label: '安全 AI', desc: '威胁检测、异常评分与入侵防御' },
-  { label: '全栈工程', desc: '从 GPU kernel 到 React 组件' },
+  { label: '全栈工程', desc: '从 Electron 主进程到 React 组件' },
+  { label: '知识管理', desc: 'LLM 持续维护的个人知识操作系统' },
 ]
 
 export default function About() {
@@ -50,11 +51,15 @@ export default function About() {
                 </p>
 
                 <p style={{ marginTop: '16px' }}>
-                  从写 Rust 静态分析工具扫描 crates.io 的 unsafe 代码，
-                  到用 XGBoost 做入侵检测把误报率压下来，
-                  再到给浏览器赋予 Agent 视觉——
+                  从让浏览器拥有 Agent 视觉的 Dawn，
+                  到 6 个专业 Agent 辩论决策的 Quorum，
+                  再到 69 万条流量上训练 LightGBM 的 Phoenix IDS——
                   我的工作始终在同一个交叉点上：
                   系统工程的严谨性和 AI 的可能性。
+                </p>
+
+                <p className="terminal-comment" style={{ marginTop: '16px', fontSize: '0.75rem' }}>
+                  {'//'} 重庆三峡科技大学 · 计算机科学与技术 2023 级 · 阿克索软件实施实习（2026-08 起）
                 </p>
 
                 <p style={{ marginTop: '16px' }}>

@@ -4,7 +4,7 @@
 
 ## 技术栈
 
-React 18 + Vite + TypeScript + TailwindCSS + Framer Motion + Lucide React
+React 19 + Vite + TypeScript + TailwindCSS + Motion + Three.js + Lucide React
 
 ## 开发
 
@@ -42,5 +42,5 @@ origin  git@github.com:141w/ww.git (push)
 ## 项目位置
 
 ```
-F:\AAA-pro\ww
+~/Desktop/update plan/ww
 ```

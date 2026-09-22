@@ -67,7 +67,7 @@ export default function Footer() {
         </div>
 
         <div className="terminal-comment" style={{ fontSize: '0.6875rem' }}>
-          Three.js GLSL Shader · Lenis · 可变字体 · Framer Motion
+          React 19 · Three.js GLSL Shader · Motion · 可变字体
         </div>
       </div>
     </footer>

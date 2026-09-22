@@ -70,12 +70,13 @@ export default function Hero() {
               }}
             >
               <p>
-                我构建在浏览器里运行的 AI Agent——
+                我构建能跑在真实系统里的 AI——
                 <br />
-                让安全分析、自动化和学习工具真正可用。
+                让浏览器操作、安全分析和学习工具真正可用。
               </p>
               <p style={{ marginTop: '8px' }}>
-                从赋予 Agent 视觉能力的浏览器运行时，到狩猎零日漏洞的入侵检测引擎，
+                从让 AI Agent 操作真实网页的 Dawn，到多 Agent 辩论决策的 Quorum，
+                再到 69 万条流量上训练的 LightGBM 检测引擎，
                 我关注延迟、可靠性，以及交付有思考能力的产品。
               </p>
             </motion.div>

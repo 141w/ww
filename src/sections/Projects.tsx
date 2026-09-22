@@ -98,19 +98,23 @@ export default function Projects() {
                 ))}
               </div>
 
-              <a
-                href={featured.links.github}
-                className="terminal-prompt"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                  fontSize: '0.8125rem',
-                  textDecoration: 'none',
-                }}
-              >
-                查看详情 <ArrowUpRight size={12} />
-              </a>
+              {featured.links.github && (
+                <a
+                  href={featured.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="terminal-prompt"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                    fontSize: '0.8125rem',
+                    textDecoration: 'none',
+                  }}
+                >
+                  查看详情 <ArrowUpRight size={12} />
+                </a>
+              )}
             </div>
           </div>
         </motion.div>
@@ -204,19 +208,23 @@ export default function Projects() {
                       ))}
                     </div>
 
-                    <a
-                      href={project.links.github}
-                      className="terminal-prompt"
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '4px',
-                        fontSize: '0.75rem',
-                        textDecoration: 'none',
-                      }}
-                    >
-                      查看详情 <ArrowUpRight size={10} />
-                    </a>
+                    {project.links.github && (
+                      <a
+                        href={project.links.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="terminal-prompt"
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          fontSize: '0.75rem',
+                          textDecoration: 'none',
+                        }}
+                      >
+                        查看详情 <ArrowUpRight size={10} />
+                      </a>
+                    )}
                   </div>
                 </div>
               </motion.div>

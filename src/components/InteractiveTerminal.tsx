@@ -10,7 +10,7 @@ const COMMANDS: Record<string, string> = {
   help: `可用命令:
   help          显示此帮助信息
   ls            列出所有项目
-  open <name>   滚动到指定项目 (dawn, phoenix, unsafe-miner, study-copilot)
+  open <name>   滚动到指定项目 (dawn, quorum, phoenix-ids, study-copilot, mindflow-ai, my-wiki)
   cat stack     显示技术栈
   whoami        显示个人简介
   contact       显示联系方式
@@ -19,10 +19,12 @@ const COMMANDS: Record<string, string> = {
 }
 
 const PROJECT_MAP: Record<string, string> = {
-  dawn: 'Dawn — AI 浏览器运行时',
-  phoenix: 'Phoenix IDS — 智能入侵检测',
-  'unsafe-miner': 'Rust Unsafe Ecosystem Miner — 安全静态分析',
-  'study-copilot': 'Study Copilot — RAG 学习助手',
+  dawn: 'Dawn — 个性化 AI 浏览器',
+  quorum: 'Quorum — 多智能体 AI 协作决策平台',
+  'phoenix-ids': 'Phoenix IDS — 智能网络入侵检测系统',
+  'study-copilot': 'Study Copilot — AI 智能学习助手',
+  'mindflow-ai': 'MindFlow AI — 随身 AI 学习伙伴',
+  'my-wiki': 'MindOS — 个人知识操作系统',
 }
 
 interface InteractiveTerminalProps {
