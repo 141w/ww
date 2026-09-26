@@ -25,3 +25,6 @@ dist-ssr
 
 # local npm cache (offline mirror workaround)
 .npm-cache/
+
+# 部署配置（含服务器地址，不进版本库）
+.deploy.env
