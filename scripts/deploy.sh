@@ -50,4 +50,4 @@ if [ "$PUSH" = 1 ]; then
   git push origin main
 fi
 
-echo "完成：自建服务器 http://${WEB_HOST:-<见 .deploy.env>}/ 与 https://141w.github.io"
+echo "完成：自建服务器 http://${WEB_SITE_URL:-<在 .deploy.env 里配 WEB_SITE_URL>} 与 https://141w.github.io"
